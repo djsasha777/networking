@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('start') {
+            steps {
+              echo 'salut monsieur!'
+            }
+        }
+        stage('run backup') {
+            steps {
+                echo 'Backup all configs'
+                sh 'ansible-playbook ios/ios_backup.yaml'
+            }
+        }
+        stage('cofigure network') {
+            steps {
+                echo 'run cisco configure script'
+                sh 'ansible-playbook auto/AUTO_add_vlan200.yaml'
+            }
+        }
+        stage('save all') {
+            steps {
+                echo 'run saving konfig'
+                sh 'ansible-playbook ios/ios_save.yaml'
+            }
+        }
+
+
+    }
+}
