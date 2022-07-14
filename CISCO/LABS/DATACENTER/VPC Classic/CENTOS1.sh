@@ -1,4 +1,4 @@
-# /etc/sysconfig/network-scripts/ifcfg-eth0
+# vi /etc/sysconfig/network-scripts/ifcfg-eth0
 BOOTPROTO=static
 DEVICE=eth0
 HWADDR=0c:a9:5d:14:00:00
