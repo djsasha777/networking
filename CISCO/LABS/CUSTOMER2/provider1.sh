@@ -2,6 +2,9 @@ conf t
 
 hostname PROVIDER1
 
+interface Loopback0
+ ip address 10.0.0.1 255.255.255.255
+ 
 interface Ethernet0/0
  ip address 192.168.1.30 255.255.255.0
  ip nat outside

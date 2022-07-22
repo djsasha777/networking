@@ -9,6 +9,9 @@ ip name-server 8.8.8.8
 ip cef
 ip cef load-sharing algorithm include-ports source destination
 
+interface Loopback0
+ ip address 10.0.0.4 255.255.255.255
+
 interface Ethernet0/0
  ip address 80.80.80.2 255.255.255.0
 
@@ -43,12 +46,21 @@ router ospf 1
 exit
 
 router bgp 56789
+ bgp router-id 10.0.0.4 
  bgp log-neighbor-changes
  bgp bestpath as-path multipath-relax
  bgp dmzlink-bw
  network 10.10.10.0 mask 255.255.255.0
  network 10.10.20.0 mask 255.255.255.0
  network 10.10.30.0 mask 255.255.255.0
+ neighbor 10.0.0.3 remote-as 56789
+ neighbor 10.0.0.3 update-source Loopback0
+ neighbor 10.0.0.5 remote-as 56789
+ neighbor 10.0.0.5 update-source Loopback0
+ neighbor 10.0.0.5 next-hop-self
+ neighbor 10.0.0.6 remote-as 56789
+ neighbor 10.0.0.6 update-source Loopback0
+ neighbor 10.0.0.6 next-hop-self
  neighbor 174.2.0.1 remote-as 3890
  neighbor 174.2.0.1 password 7 062B36116D7D3A
  neighbor 174.2.0.1 prefix-list PREF-DEF in

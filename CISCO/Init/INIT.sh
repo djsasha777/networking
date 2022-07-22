@@ -3,7 +3,7 @@
 enable
 clock set 12:10:00 20 Jun 2021
 conf t
-hostname ROUTER1
+hostname switch55
 username admin privilege 15 secret 0 cisco
 service password-encryption
 enable secret gorizont
@@ -25,5 +25,3 @@ line vty 0 4
 transport input ssh
 end
 wr
-exit
-exit
